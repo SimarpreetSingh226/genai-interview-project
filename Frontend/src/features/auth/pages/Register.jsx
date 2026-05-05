@@ -7,6 +7,7 @@ const Register = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const { loading, handleRegister } = useAuth();
 
   const handleSubmit = async (e) => {
@@ -27,6 +28,7 @@ const Register = () => {
     <main>
       <div className="form-container">
         <h1>Register</h1>
+
         <form onSubmit={handleSubmit}>
           <div className="input-group">
             <label htmlFor="username">Username</label>
@@ -67,6 +69,7 @@ const Register = () => {
 
           <button className="button primary-button">Register</button>
         </form>
+
         <p>
           Already have an account? <Link to={"/login"}>Login</Link>{" "}
         </p>

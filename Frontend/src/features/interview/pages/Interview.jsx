@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../style/interview.scss";
 import { useInterview } from "../hooks/useInterview.js";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 const NAV_ITEMS = [
   {
@@ -243,6 +243,7 @@ const Interview = () => {
             </section>
           )}
         </main>
+
         <div className="interview-divider" />
 
         {/* ── Right Sidebar ── */}

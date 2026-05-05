@@ -1,7 +1,7 @@
-const userModel = require("../models/user.model.js");
+const userModel = require("../models/user.model");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const tokenBlacklistModel = require("../models/blacklist.model.js");
+const tokenBlacklistModel = require("../models/blacklist.model");
 
 /**
  * @name registerUserController
@@ -51,7 +51,6 @@ async function registerUserController(req, res) {
  * @description login a user, expects email and password in the request body
  * @access Public
  */
-
 async function loginUserController(req, res) {
   const { email, password } = req.body;
   const user = await userModel.findOne({ email });
@@ -87,7 +86,6 @@ async function loginUserController(req, res) {
  * @description clear token from user cookie and add the token in blacklist
  * @access public
  */
-
 async function logoutUserController(req, res) {
   const token = req.cookies.token;
   if (token) {
@@ -104,7 +102,6 @@ async function logoutUserController(req, res) {
  * @description get the current logged in user details.
  * @access private
  */
-
 async function getMeController(req, res) {
   const user = await userModel.findById(req.user.id);
   res.status(200).json({
