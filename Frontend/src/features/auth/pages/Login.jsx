@@ -18,11 +18,12 @@ const Login = () => {
 
   if (loading) {
     return (
-      <main className="loading-screen">
-        <h1>Loading...</h1>
+      <main>
+        <h1>Loading.......</h1>
       </main>
     );
   }
+
   return (
     <main>
       <div className="form-container">

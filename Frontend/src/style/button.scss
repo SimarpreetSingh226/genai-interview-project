@@ -1,20 +1,47 @@
-.button{
+.button {
+  border: none;
+  outline: none;
+  padding-inline: 1.5rem;
+  padding-block: 0.75rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  font-size: 0.9rem;
 
-    border: none;
-    outline: none;
-    padding-inline: 1.5rem;
+  transition: all 0.3s ease-in-out;
+
+  &.primary-button {
+    background-color: #e1034d;
+    color: white;
+  }
+
+  &:active {
+    transform: scale(0.95); // slightly smoother than 0.9 for mobile
+  }
+}
+
+// Tablet
+@media (max-width: 1024px) {
+  .button {
+    padding-inline: 1.25rem;
+    padding-block: 0.7rem;
+    font-size: 0.85rem;
+  }
+}
+
+// Mobile
+@media (max-width: 768px) {
+  .button {
+    width: 100%; // full width for better UX
+    padding-block: 0.8rem;
+    font-size: 0.9rem;
+    border-radius: 0.75rem;
+  }
+}
+
+// Small Mobile
+@media (max-width: 480px) {
+  .button {
     padding-block: 0.75rem;
-    border-radius: 1rem;
-    cursor: pointer;
-
-    transition: all 0.3s ease-in-out;
-
-    &.primary-button{
-        background-color: #e1034d;
-        color: white;
-    }
-
-    &:active{
-        transform: scale(0.9);
-    }
+    font-size: 0.85rem;
+  }
 }

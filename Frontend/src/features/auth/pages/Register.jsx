@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router";
-import "../auth.form.scss";
 import { useAuth } from "../hooks/useAuth";
 
 const Register = () => {
@@ -19,8 +18,8 @@ const Register = () => {
 
   if (loading) {
     return (
-      <main className="loading-screen">
-        <h1>Loading...</h1>
+      <main>
+        <h1>Loading.......</h1>
       </main>
     );
   }

@@ -103,6 +103,7 @@ async function generateInterviewReport({
                         Self Description: ${selfDescription}
                         Job Description: ${jobDescription}
 `;
+
   const response = await ai.models.generateContent({
     model: "gemini-3-flash-preview",
     contents: prompt,
@@ -111,6 +112,7 @@ async function generateInterviewReport({
       responseSchema: zodToJsonSchema(interviewReportSchema),
     },
   });
+
   return JSON.parse(response.text);
 }
 
@@ -118,6 +120,7 @@ async function generatePdfFromHtml(htmlContent) {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.setContent(htmlContent, { waitUntil: "networkidle0" });
+
   const pdfBuffer = await page.pdf({
     format: "A4",
     margin: {
@@ -127,9 +130,12 @@ async function generatePdfFromHtml(htmlContent) {
       right: "15mm",
     },
   });
+
   await browser.close();
+
   return pdfBuffer;
 }
+
 async function generateResumePdf({ resume, selfDescription, jobDescription }) {
   const resumePdfSchema = z.object({
     html: z
@@ -138,6 +144,7 @@ async function generateResumePdf({ resume, selfDescription, jobDescription }) {
         "The HTML content of the resume which can be converted to PDF using any library like puppeteer",
       ),
   });
+
   const prompt = `Generate resume for a candidate with the following details:
                         Resume: ${resume}
                         Self Description: ${selfDescription}
@@ -159,8 +166,11 @@ async function generateResumePdf({ resume, selfDescription, jobDescription }) {
       responseSchema: zodToJsonSchema(resumePdfSchema),
     },
   });
+
   const jsonContent = JSON.parse(response.text);
+
   const pdfBuffer = await generatePdfFromHtml(jsonContent.html);
+
   return pdfBuffer;
 }
 
