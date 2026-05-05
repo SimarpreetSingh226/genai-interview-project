@@ -38,6 +38,7 @@ $font-stack:
   @media (max-width: 768px) {
     padding: 2rem 1rem;
     gap: 1.5rem;
+    justify-content: flex-start;
   }
 }
 
@@ -346,22 +347,31 @@ $font-stack:
 .generate-btn {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
+  padding: 0.85rem 2rem;
   background: linear-gradient(135deg, $accent 0%, darken($accent, 10%) 100%);
   color: #fff;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 600;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 0.6rem;
   cursor: pointer;
   transition:
     opacity 0.2s,
     transform 0.1s;
   font-family: $font-stack;
+  box-shadow: 0 4px 15px rgba($accent, 0.3);
+
+  @media (max-width: 480px) {
+    width: 100%;
+    font-size: 0.95rem;
+  }
 
   &:hover {
     opacity: 0.9;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba($accent, 0.4);
   }
 
   &:active {
@@ -372,32 +382,85 @@ $font-stack:
 .recent-reports {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 1rem;
   width: 100%;
   max-width: 900px;
+  margin-top: 1rem;
+
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: $text-primary;
+
+    @media (max-width: 768px) {
+      font-size: 1.1rem;
+      text-align: center;
+    }
+  }
 
   .reports-list {
     display: flex;
-    gap: 0.75rem;
+    gap: 1rem;
     flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
 
     .report-item {
       background-color: $bg-card;
       border: 1px solid $border-color;
-      border-radius: 0.5rem;
-      padding: 1rem;
+      border-radius: 0.75rem;
+      padding: 1.25rem;
       flex: 1;
+      min-width: 280px;
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
       cursor: pointer;
-      flex-shrink: 0;
+      transition:
+        border-color 0.2s,
+        transform 0.2s;
+
+      @media (max-width: 768px) {
+        width: 100%;
+        min-width: unset;
+      }
+
+      &:hover {
+        border-color: $accent;
+        transform: translateY(-2px);
+      }
+
+      h3 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: $text-primary;
+        margin: 0;
+      }
+
+      .report-meta {
+        font-size: 0.85rem;
+        color: $text-muted;
+        margin: 0;
+      }
 
       .match-score {
-        font-size: 0.8rem;
-        font-weight: 600;
-        color: $accent;
-        align-items: flex-start;
+        font-size: 0.85rem;
+        font-weight: 700;
+        margin-top: 0.25rem;
+
+        &.score--high {
+          color: #3fb950;
+        }
+        &.score--mid {
+          color: #f5a623;
+        }
+        &.score--low {
+          color: #ff4d4d;
+        }
       }
     }
   }
